@@ -34,6 +34,12 @@ public class Anagrams {
     }
 
 
+    /**
+     * Prints out all possible anagrams of a word/phrase using at most a certain
+     * number of words
+     * @param text word/phrase to make anagrams out of
+     * @param max number of words allowed to make anagrams out of
+     */
     public void print(String text, int max) {
         //Check for Illegal Argument (max < 0)
         if (max < 0) {
@@ -45,23 +51,37 @@ public class Anagrams {
 
 
         //Prune dictionary based on text
-        List<String> prunedDict = new LinkedList<>();
-        Collections.copy(prunedDict, dictionary);
+        List<String> prunedDict = pruneDictionary(dictionary, textInventory);
 
         // use private helper to add to List
+        //printing lists every time a list is complete
+        List<String> listToPrint = makeList(textInventory, prunedDict);
 
-        // while ((i < max || max == 0) and not out of words)
 
         //print list
+        System.out.print(listToPrint);
     }
+
+    private List<String> makeList(LetterInventory textInventory, List<String> dict){
+
+
+        return new ArrayList<String>();
+    }
+
+
 
     //returns a pruned dictionary based on how many words are available
     private List<String> pruneDictionary(List<String> dictionary,
                                          LetterInventory textInventory) {
         List<String> newDict = new LinkedList<>();
         for (String word : dictionary) {
-            if ()
+            LetterInventory testInventory = textInventory.subtract(inventories.get(word));
+            if (testInventory != null && testInventory.isEmpty()) {
+                newDict.add(word);
+            }
         }
+
+        return newDict;
     }
 
 }
